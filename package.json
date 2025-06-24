@@ -33,6 +33,7 @@
     "i18next": "^25.2.1",
     "i18next-express-middleware": "^2.0.0",
     "i18next-http-middleware": "^3.7.4",
+    "mongoose": "^8.16.0",
     "sass": "^1.89.2"
   },
   "devDependencies": {
