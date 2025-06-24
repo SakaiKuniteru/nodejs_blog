@@ -1,20 +1,15 @@
 const Course = require('../models/Course');
+const { muntipleMongooseToObject } = require('../../util/mongoose')
 
 class SiteController {
     // [GET] /
-    async index(req, res) {
-    try {
-      const courses = await Course.find({}); // Lấy tất cả courses
-      res.json({ courses }); // Render template với dữ liệu courses
-    } catch (err) {
-      console.error(err); // Log lỗi để debug
-      res.status(400).json('ERROR!!!');
-    }
-        // Course.find({}, function (err, courses) {
-        //     if (!err) res.json(courses);
-        //     res.status(400).json({ error: "ERROR!!!"});
-        // });
-        // res.render('home');
+    index(req, res, next) {
+        Course.find({})
+        .then(courses => {
+          res.render('home', { 
+            courses: muntipleMongooseToObject(courses) })
+        })
+        .catch(next);
     }
 
     // [GET] /search
